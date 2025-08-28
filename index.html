@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>奨学金代理返還情報管理システム</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="font-inter bg-gray-50">
+    <!-- ナビゲーションヘッダー -->
+    <nav class="bg-blue-900 text-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <i class="fas fa-graduation-cap text-2xl mr-3"></i>
+                    <h1 class="text-xl font-bold">奨学金代理返還情報管理システム</h1>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <button id="userMenuButton" class="flex items-center space-x-2 hover:bg-blue-800 px-3 py-2 rounded-md">
+                            <i class="fas fa-user-circle text-xl"></i>
+                            <span id="currentUserName">松木一真</span>
+                            <i class="fas fa-chevron-down text-sm"></i>
+                        </button>
+                        <div id="userDropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10">
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                <i class="fas fa-user mr-2"></i>プロフィール設定
+                            </a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                <i class="fas fa-shield-alt mr-2"></i>セキュリティ設定
+                            </a>
+                            <hr class="my-1">
+                            <a href="#" id="logoutBtn" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100">
+                                <i class="fas fa-sign-out-alt mr-2"></i>ログアウト
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- サイドバー -->
+    <div class="flex h-screen">
+        <aside class="w-64 bg-white shadow-lg">
+            <nav class="mt-5 px-2">
+                <div class="space-y-1">
+                    <!-- ダッシュボード -->
+                    <a href="#dashboard" class="nav-item group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-md text-gray-900 bg-gray-100">
+                        <i class="fas fa-chart-dashboard text-gray-500 mr-4"></i>ダッシュボード
+                    </a>
+                    
+                    <!-- 従業員情報管理 -->
+                    <div class="nav-section">
+                        <div class="nav-section-header flex items-center px-2 py-2 text-sm font-medium text-gray-600 uppercase tracking-wide">
+                            <i class="fas fa-users mr-2"></i>従業員情報管理
+                        </div>
+                        <a href="#employee-register" class="nav-item group flex items-center px-4 py-2 text-sm leading-5 font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-50">
+                            <i class="fas fa-user-plus text-gray-400 mr-3"></i>新規登録
+                        </a>
+                        <a href="#employee-list" class="nav-item group flex items-center px-4 py-2 text-sm leading-5 font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-50">
+                            <i class="fas fa-list text-gray-400 mr-3"></i>従業員一覧
+                        </a>
+                        <a href="#employee-search" class="nav-item group flex items-center px-4 py-2 text-sm leading-5 font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-50">
+                            <i class="fas fa-search text-gray-400 mr-3"></i>検索・絞り込み
+                        </a>
+                    </div>
+
+                    <!-- 申請管理 -->
+                    <div class="nav-section">
+                        <div class="nav-section-header flex items-center px-2 py-2 text-sm font-medium text-gray-600 uppercase tracking-wide">
+                            <i class="fas fa-file-alt mr-2"></i>申請管理
+                        </div>
+                        <a href="#application-new" class="nav-item group flex items-center px-4 py-2 text-sm leading-5 font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-50">
+                            <i class="fas fa-plus-circle text-gray-400 mr-3"></i>新規申請
+                        </a>
+                        <a href="#application-list" class="nav-item group flex items-center px-4 py-2 text-sm leading-5 font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-50">
+                            <i class="fas fa-clipboard-list text-gray-400 mr-3"></i>申請一覧
+                        </a>
+                        <a href="#application-status" class="nav-item group flex items-center px-4 py-2 text-sm leading-5 font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-50">
+                            <i class="fas fa-tasks text-gray-400 mr-3"></i>ステータス管理
+                        </a>
+                    </div>
+
+                    <!-- 書類管理 -->
+                    <div class="nav-section">
+                        <div class="nav-section-header flex items-center px-2 py-2 text-sm font-medium text-gray-600 uppercase tracking-wide">
+                            <i class="fas fa-folder mr-2"></i>書類管理
+                        </div>
+                        <a href="#document-upload" class="nav-item group flex items-center px-4 py-2 text-sm leading-5 font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-50">
+                            <i class="fas fa-cloud-upload-alt text-gray-400 mr-3"></i>書類アップロード
+                        </a>
+                        <a href="#document-list" class="nav-item group flex items-center px-4 py-2 text-sm leading-5 font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-50">
+                            <i class="fas fa-file-archive text-gray-400 mr-3"></i>書類一覧
+                        </a>
+                        <a href="#document-verify" class="nav-item group flex items-center px-4 py-2 text-sm leading-5 font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-50">
+                            <i class="fas fa-check-circle text-gray-400 mr-3"></i>書類確認
+                        </a>
+                    </div>
+
+                    <!-- レポート・分析 -->
+                    <div class="nav-section">
+                        <div class="nav-section-header flex items-center px-2 py-2 text-sm font-medium text-gray-600 uppercase tracking-wide">
+                            <i class="fas fa-chart-bar mr-2"></i>レポート・分析
+                        </div>
+                        <a href="#report-overview" class="nav-item group flex items-center px-4 py-2 text-sm leading-5 font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-50">
+                            <i class="fas fa-chart-pie text-gray-400 mr-3"></i>概要レポート
+                        </a>
+                        <a href="#report-jasso" class="nav-item group flex items-center px-4 py-2 text-sm leading-5 font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-50">
+                            <i class="fas fa-file-export text-gray-400 mr-3"></i>JASSO提出用データ
+                        </a>
+                    </div>
+
+                    <!-- システム管理 -->
+                    <div class="nav-section">
+                        <div class="nav-section-header flex items-center px-2 py-2 text-sm font-medium text-gray-600 uppercase tracking-wide">
+                            <i class="fas fa-cog mr-2"></i>システム管理
+                        </div>
+                        <a href="#user-management" class="nav-item group flex items-center px-4 py-2 text-sm leading-5 font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-50">
+                            <i class="fas fa-users-cog text-gray-400 mr-3"></i>ユーザー管理
+                        </a>
+                        <a href="#audit-logs" class="nav-item group flex items-center px-4 py-2 text-sm leading-5 font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-50">
+                            <i class="fas fa-history text-gray-400 mr-3"></i>監査ログ
+                        </a>
+                        <a href="#system-settings" class="nav-item group flex items-center px-4 py-2 text-sm leading-5 font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-50">
+                            <i class="fas fa-sliders-h text-gray-400 mr-3"></i>システム設定
+                        </a>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- メインコンテンツエリア -->
+        <main class="flex-1 overflow-y-auto bg-gray-50">
+            <!-- コンテンツヘッダー -->
+            <div class="bg-white shadow">
+                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                    <div class="flex items-center justify-between">
+                        <h1 id="page-title" class="text-3xl font-bold text-gray-900">ダッシュボード</h1>
+                        <div class="flex items-center space-x-3">
+                            <div class="text-sm text-gray-500">
+                                最終更新: <span id="last-updated">2025年08月26日 10:30</span>
+                            </div>
+                            <button id="refreshBtn" class="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                <i class="fas fa-sync-alt mr-2"></i>更新
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 動的コンテンツ表示エリア -->
+            <div id="main-content" class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+                <!-- ここに各画面のコンテンツが動的に表示される -->
+            </div>
+        </main>
+    </div>
+
+    <!-- モーダル・ダイアログ用オーバーレイ -->
+    <div id="modal-overlay" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
+        <div id="modal-container" class="relative top-20 mx-auto p-5 border w-11/12 md:w-3/4 lg:w-1/2 shadow-lg rounded-md bg-white">
+            <!-- モーダルコンテンツがここに動的に表示される -->
+        </div>
+    </div>
+
+    <!-- ローディングスピナー -->
+    <div id="loading-spinner" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50">
+        <div class="bg-white p-6 rounded-lg shadow-xl">
+            <div class="flex items-center space-x-3">
+                <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+                <span class="text-gray-700 font-medium">処理中...</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 通知トースト -->
+    <div id="toast-container" class="fixed top-4 right-4 z-50 space-y-2">
+        <!-- 通知メッセージがここに動的に表示される -->
+    </div>
+
+    <!-- 基盤システム（先に読み込み） -->
+    <script src="js/error-handler.js"></script>
+    <script src="js/performance-optimizer.js"></script>
+    <script src="js/audit-logger.js"></script>
+    
+    <!-- モックデータローダー（デモ用） -->
+    <script src="js/mock-data-loader.js"></script>
+
+    <!-- 既存システム -->
+    <script src="js/api.js"></script>
+    <script src="js/advanced-search.js"></script>
+    <script src="js/reports.js"></script>
+    <script src="js/user-management.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/employee.js"></script>
+    <script src="js/application.js"></script>
+    <script src="js/document.js"></script>
+    <script src="js/utils.js"></script>
+
+    <!-- 統合テストシステム -->
+    <script src="js/integration-test.js"></script>
+</body>
+</html>
