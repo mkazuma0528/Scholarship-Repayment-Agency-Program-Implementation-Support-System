@@ -795,4 +795,4 @@ window.generateJassoReport = () => window.reportManager.generateJassoReport(
     window.selectedJassoFormat || 'csv'
 );
 
-console.log('📊 レポート機能初期化完了');
+console.log('レポート機能初期化完了');

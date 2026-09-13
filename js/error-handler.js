@@ -544,4 +544,4 @@ window.addEventListener('unhandledrejection', (event) => {
     });
 });
 
-console.log('✅ 奨学金代理返還システム - エラーハンドリングシステムが初期化されました');
+console.log('[OK] 奨学金代理返還システム - エラーハンドリングシステムが初期化されました');

@@ -541,4 +541,4 @@ window.scholarshipAPI = new ScholarshipAPI();
 window.ScholarshipAPI = ScholarshipAPI;
 window.APIError = APIError;
 
-console.log('🚀 RESTful Table API統合モジュール初期化完了');
+console.log('RESTful Table API統合モジュール初期化完了');

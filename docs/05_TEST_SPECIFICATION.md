@@ -975,7 +975,7 @@ INSERT INTO applications (id, user_id, status, amount, created_at) VALUES
 - 定期的なセキュリティ監査の実施
 
 ## 4. リリース可否判定
-判定: **リリース可** ✅
+判定: **リリース可** ✓
 理由: 全ての重要な機能が正常動作し、品質基準を満たしている
 ```
 

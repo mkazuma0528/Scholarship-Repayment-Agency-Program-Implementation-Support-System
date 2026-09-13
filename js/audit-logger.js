@@ -30,7 +30,7 @@ class AuditLogger {
         // セッション開始をログ
         this.logSessionStart();
 
-        console.log('✅ 監査ログシステムが初期化されました');
+        console.log('[OK] 監査ログシステムが初期化されました');
     }
 
     /**
@@ -247,7 +247,7 @@ class AuditLogger {
                 }
             }
 
-            console.log(`✅ ${logsToFlush.length}件の監査ログを保存しました`);
+            console.log(`[OK] ${logsToFlush.length}件の監査ログを保存しました`);
         } catch (error) {
             console.error('監査ログの保存に失敗:', error);
             
@@ -671,4 +671,4 @@ class AuditLogger {
 // グローバルインスタンス作成
 window.auditLogger = new AuditLogger();
 
-console.log('✅ 奨学金代理返還システム - 監査ログシステムが初期化されました');
+console.log('[OK] 奨学金代理返還システム - 監査ログシステムが初期化されました');

@@ -1,0 +1,11 @@
+#!/bin/sh
+# コミット対象に絵文字が混ざっていないか検査する。
+# 有効化: git config core.hooksPath scripts/hooks
+# 回避:   git commit --no-verify
+
+if ! command -v python3 >/dev/null 2>&1; then
+	echo "pre-commit: python3 が見つからないため絵文字チェックを省略しました" >&2
+	exit 0
+fi
+
+exec python3 "$(git rev-parse --show-toplevel)/scripts/check-emoji.py"

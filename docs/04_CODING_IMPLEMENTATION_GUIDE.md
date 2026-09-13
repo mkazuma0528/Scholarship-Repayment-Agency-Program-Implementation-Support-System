@@ -2430,7 +2430,7 @@ class DebugHelper {
     
     log(category, message, data = null) {
         if (this.enabled) {
-            console.group(`🔍 [${category}] ${message}`);
+            console.group(` [${category}] ${message}`);
             if (data) {
                 console.log(data);
             }
@@ -2440,7 +2440,7 @@ class DebugHelper {
     }
     
     error(category, error, context = null) {
-        console.group(`❌ [${category}] Error`);
+        console.group(`✗ [${category}] Error`);
         console.error(error);
         if (context) {
             console.log('Context:', context);

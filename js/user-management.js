@@ -626,4 +626,4 @@ window.generateUserManagementContent = () => window.userManagementSystem.generat
 window.showCreateUserModal = () => window.userManagementSystem.showCreateUserModal();
 window.exportUsersToCSV = () => window.userManagementSystem.exportUsersToCSV();
 
-console.log('👥 ユーザー管理機能初期化完了');
+console.log('ユーザー管理機能初期化完了');

@@ -304,12 +304,12 @@ class MockDataLoader {
         ];
 
         this.isInitialized = true;
-        console.log('✅ モックデータが初期化されました');
-        console.log(`📊 従業員: ${this.mockEmployees.length}件`);
-        console.log(`📄 申請: ${this.mockApplications.length}件`);
-        console.log(`📁 文書: ${this.mockDocuments.length}件`);
-        console.log(`👥 ユーザー: ${this.mockUsers.length}件`);
-        console.log(`📋 監査ログ: ${this.mockAuditLogs.length}件`);
+        console.log('[OK] モックデータが初期化されました');
+        console.log(`従業員: ${this.mockEmployees.length}件`);
+        console.log(`申請: ${this.mockApplications.length}件`);
+        console.log(`文書: ${this.mockDocuments.length}件`);
+        console.log(`ユーザー: ${this.mockUsers.length}件`);
+        console.log(`監査ログ: ${this.mockAuditLogs.length}件`);
     }
 
     // API互換メソッド
@@ -425,7 +425,7 @@ class MockDataLoader {
                 throw new Error(`未知のテーブル: ${tableName}`);
         }
 
-        console.log(`✅ ${tableName} に新しいレコードを作成しました:`, newItem.id);
+        console.log(`[OK] ${tableName} に新しいレコードを作成しました:`, newItem.id);
         return newItem;
     }
 
@@ -465,7 +465,7 @@ class MockDataLoader {
             updated_at: Date.now()
         };
 
-        console.log(`✅ ${tableName} のレコードを更新しました:`, id);
+        console.log(`[OK] ${tableName} のレコードを更新しました:`, id);
         return data[itemIndex];
     }
 
@@ -500,7 +500,7 @@ class MockDataLoader {
         }
 
         const deletedItem = data.splice(itemIndex, 1)[0];
-        console.log(`✅ ${tableName} のレコードを削除しました:`, id);
+        console.log(`[OK] ${tableName} のレコードを削除しました:`, id);
         return deletedItem;
     }
 
@@ -633,5 +633,5 @@ window.reportManager = {
     }
 };
 
-console.log('🎯 モックデータローダーが初期化されました');
-console.log('💡 これで全ての機能がデモンストレーション可能です');
+console.log('モックデータローダーが初期化されました');
+console.log('これで全ての機能がデモンストレーション可能です');

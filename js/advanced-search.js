@@ -588,4 +588,4 @@ document.addEventListener('DOMContentLoaded', () => {
     window.advancedSearchManager.loadSavedSearches();
 });
 
-console.log('🔍 高度検索機能初期化完了');
+console.log('高度検索機能初期化完了');

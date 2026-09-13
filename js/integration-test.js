@@ -36,7 +36,7 @@ class IntegrationTestSuite {
      * フルスタック統合テストの実行
      */
     async runFullIntegrationTest() {
-        console.log('🚀 フルスタック統合テストを開始します...');
+        console.log('フルスタック統合テストを開始します...');
         this.startTime = Date.now();
         
         try {
@@ -71,7 +71,7 @@ class IntegrationTestSuite {
             this.generateTestReport();
             
         } catch (error) {
-            console.error('❌ 統合テストでエラーが発生:', error);
+            console.error('[NG] 統合テストでエラーが発生:', error);
             await this.handleTestError(error);
         }
     }
@@ -581,7 +581,7 @@ class IntegrationTestSuite {
             startTime: Date.now(),
             status: 'running'
         };
-        console.log(`🔄 ${testName} を開始...`);
+        console.log(`${testName} を開始...`);
     }
 
     passTest(testName, message) {
@@ -594,7 +594,7 @@ class IntegrationTestSuite {
         };
         
         this.testResults.push(result);
-        console.log(`✅ ${testName} が成功しました - ${message} (${duration}ms)`);
+        console.log(`[OK] ${testName} が成功しました - ${message} (${duration}ms)`);
     }
 
     failTest(testName, error) {
@@ -607,7 +607,7 @@ class IntegrationTestSuite {
         };
         
         this.testResults.push(result);
-        console.error(`❌ ${testName} が失敗しました - ${error} (${duration}ms)`);
+        console.error(`[NG] ${testName} が失敗しました - ${error} (${duration}ms)`);
     }
 
     async handleTestError(error) {
@@ -649,18 +649,18 @@ class IntegrationTestSuite {
             timestamp: new Date().toISOString()
         };
         
-        console.log('\n🎯 ===== フルスタック統合テスト結果 =====');
-        console.log(`📊 総テスト数: ${totalTests}`);
-        console.log(`✅ 成功: ${passedTests}`);
-        console.log(`❌ 失敗: ${failedTests}`);
-        console.log(`📈 成功率: ${report.summary.successRate}%`);
+        console.log('\n===== フルスタック統合テスト結果 =====');
+        console.log(`総テスト数: ${totalTests}`);
+        console.log(`[OK] 成功: ${passedTests}`);
+        console.log(`[NG] 失敗: ${failedTests}`);
+        console.log(`成功率: ${report.summary.successRate}%`);
         console.log(`⏱️ 総実行時間: ${totalDuration}ms`);
         console.log('==========================================\n');
         
         // 失敗したテストの詳細
         const failedDetails = this.testResults.filter(r => r.status === 'failed');
         if (failedDetails.length > 0) {
-            console.log('❌ 失敗したテストの詳細:');
+            console.log('[NG] 失敗したテストの詳細:');
             failedDetails.forEach(test => {
                 console.log(`  - ${test.name}: ${test.error}`);
             });
@@ -670,7 +670,7 @@ class IntegrationTestSuite {
         // 成功したテストの詳細
         const passedDetails = this.testResults.filter(r => r.status === 'passed');
         if (passedDetails.length > 0) {
-            console.log('✅ 成功したテストの詳細:');
+            console.log('[OK] 成功したテストの詳細:');
             passedDetails.forEach(test => {
                 console.log(`  - ${test.name}: ${test.message} (${test.duration}ms)`);
             });
@@ -709,4 +709,4 @@ class IntegrationTestSuite {
 // グローバルインスタンス作成
 window.integrationTestSuite = new IntegrationTestSuite();
 
-console.log('🧪 奨学金代理返還システム - 統合テストシステムが初期化されました');
+console.log('[TEST] 奨学金代理返還システム - 統合テストシステムが初期化されました');

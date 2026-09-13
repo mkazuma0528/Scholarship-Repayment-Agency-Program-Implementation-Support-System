@@ -38,7 +38,7 @@ class PerformanceOptimizer {
         // メモリ使用量監視
         this.monitorMemoryUsage();
         
-        console.log('✅ パフォーマンス最適化システムが初期化されました');
+        console.log('[OK] パフォーマンス最適化システムが初期化されました');
     }
 
     /**
@@ -690,4 +690,4 @@ class VirtualScrollManager {
 // グローバルインスタンス作成
 window.performanceOptimizer = new PerformanceOptimizer();
 
-console.log('✅ 奨学金代理返還システム - パフォーマンス最適化システムが初期化されました');
+console.log('[OK] 奨学金代理返還システム - パフォーマンス最適化システムが初期化されました');
